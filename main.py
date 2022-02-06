@@ -141,6 +141,12 @@ def winChecker(boardPositions, numberOfMoves):
 	elif boardPositions[0][0] == boardPositions[1][0] == boardPositions[2][0]:
 		winner = boardPositions[0][0]
 		result(winner)
+	elif boardPositions[0][1] == boardPositions[1][1] == boardPositions[2][2]:
+		winner = boardPositions[0][0]
+		result(winner)
+	elif boardPositions[0][2] == boardPositions[1][2] == boardPositions[2][2]:
+		winner = boardPositions[0][0]
+		result(winner)
 	elif numberOfMoves == 9:
 		print("IT'S A TIE")
 
