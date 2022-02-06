@@ -123,18 +123,24 @@ def positionChecker(locations, position, symbol): # This function will be used t
 			locations[2][2] = symbol # Setting the position to the input symbol
 			return True
 
-def winChecker(boardPositions, currentPlayer, numberOfMoves):
+def winChecker(boardPositions, numberOfMoves):
 	def result(player,):
 		if player == "x":
 			print("PLAYER 1 WINS!!!")
 		elif player == "o":
 			print("PLAYER 2 WINS!!!")
-	if boardPositions[0] == [currentPlayer, currentPlayer, currentPlayer]:
-		result(currentPlayer)
-	elif boardPositions[1] == [currentPlayer, currentPlayer, currentPlayer]:
-		result(currentPlayer)
-	elif boardPositions[2] == [currentPlayer, currentPlayer, currentPlayer]:
-		result(currentPlayer)
+	if boardPositions[0][0] == boardPositions[0][1] == boardPositions[0][2]:
+		winner = boardPositions[0][0]
+		result(winner)
+	elif boardPositions[1][0] == boardPositions[1][1] == boardPositions[1][2]:
+		winner = boardPositions[1][0]
+		result(winner)
+	elif boardPositions[2][0] == boardPositions[2][1] == boardPositions[2][2]:
+		winner = boardPositions[2][0]
+		result(winner)
+	elif boardPositions[0][0] == boardPositions[1][0] == boardPositions[2][0]:
+		winner = boardPositions[0][0]
+		result(winner)
 	elif numberOfMoves == 9:
 		print("IT'S A TIE")
 
