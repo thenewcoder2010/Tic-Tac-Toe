@@ -122,6 +122,22 @@ def positionChecker(locations, position, symbol): # This function will be used t
 		if locations[2][2] == '': # Checking if the position is taken
 			locations[2][2] = symbol # Setting the position to the input symbol
 			return True
+
+def winChecker(boardPositions, currentPlayer, numberOfMoves):
+	def result(player,):
+		if player == "x":
+			print("PLAYER 1 WINS!!!")
+		elif player == "o":
+			print("PLAYER 2 WINS!!!")
+	if boardPositions[0] == [currentPlayer, currentPlayer, currentPlayer]:
+		result(currentPlayer)
+	elif boardPositions[1] == [currentPlayer, currentPlayer, currentPlayer]:
+		result(currentPlayer)
+	elif boardPositions[2] == [currentPlayer, currentPlayer, currentPlayer]:
+		result(currentPlayer)
+	elif numberOfMoves == 9:
+		print("IT'S A TIE")
+
 myPen = turtle.Turtle() # Setting up the pen
 myPen.speed(0) # Setting the speed to 0 so I can test my code quickly
 myPen.penup()
