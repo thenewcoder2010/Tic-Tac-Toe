@@ -129,22 +129,29 @@ def winChecker(boardPositions, numberOfMoves):
 			print("PLAYER 1 WINS!!!")
 		elif player == "o":
 			print("PLAYER 2 WINS!!!")
-	if boardPositions[0][0] == boardPositions[0][1] == boardPositions[0][2]:
+
+	if boardPositions[0][0] == boardPositions[0][1] == boardPositions[0][2]: # Checking for a horizontal win on the first row
 		winner = boardPositions[0][0]
 		result(winner)
-	elif boardPositions[1][0] == boardPositions[1][1] == boardPositions[1][2]:
+	elif boardPositions[1][0] == boardPositions[1][1] == boardPositions[1][2]: # Checking for a horizontal win on the second row
 		winner = boardPositions[1][0]
 		result(winner)
-	elif boardPositions[2][0] == boardPositions[2][1] == boardPositions[2][2]:
+	elif boardPositions[2][0] == boardPositions[2][1] == boardPositions[2][2]: # Checking for a horizontal win on the third row
 		winner = boardPositions[2][0]
 		result(winner)
-	elif boardPositions[0][0] == boardPositions[1][0] == boardPositions[2][0]:
+	elif boardPositions[0][0] == boardPositions[1][0] == boardPositions[2][0]: # Checking for a vertical win on the first column
 		winner = boardPositions[0][0]
 		result(winner)
-	elif boardPositions[0][1] == boardPositions[1][1] == boardPositions[2][2]:
+	elif boardPositions[0][1] == boardPositions[1][1] == boardPositions[2][2]: # Checking for a vertical win on the second column
 		winner = boardPositions[0][0]
 		result(winner)
-	elif boardPositions[0][2] == boardPositions[1][2] == boardPositions[2][2]:
+	elif boardPositions[0][2] == boardPositions[1][2] == boardPositions[2][2]:  # Checking for a vertical win on the third column
+		winner = boardPositions[0][0]
+		result(winner)
+	elif boardPositions[0][0] == boardPositions[1][1] == boardPositions[2][2]:  # Checking for a diagonal win from the top left corner to the bottom left corner
+		winner = boardPositions[0][0]
+		result(winner)
+	elif boardPositions[0][2] == boardPositions[1][1] == boardPositions[2][0]: # Checking for a diagonal win from the top left corner to the bottom right corner
 		winner = boardPositions[0][0]
 		result(winner)
 	elif numberOfMoves == 9:
