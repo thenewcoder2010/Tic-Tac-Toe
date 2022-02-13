@@ -45,6 +45,7 @@ def symbolDrawer(pen, symbol, position): # This function will draw the symbols i
 			pen.goto(10,-50)
 			style = ("Arial", 30, "bold")
 			pen.write("O", font = style) # Writing O
+
 	elif symbol == "x": # All of the things in this block will be executed if the symbol is x
 		pen.color('blue') # Setting the pen colour to Blue to make the game more aesthetic
 		pen.pensize(2) # Making the pen more thick so it is more visible to the user
@@ -124,41 +125,78 @@ def positionChecker(locations, position, symbol): # This function will be used t
 			return True
 
 def winChecker(boardPositions, numberOfMoves):
-	def result(player,):
+	def result(player):
 		if player == "x":
 			return "PLAYER 1 WINS!!!"
 		elif player == "o":
 			return "PLAYER 2 WINS!!!"
 
-	if boardPositions[0][0] == boardPositions[0][1] == boardPositions[0][2]: # Checking for a horizontal win on the first row
+	if boardPositions[0][0] == boardPositions[0][1] and boardPositions[0][1] == boardPositions[0][2] and boardPositions[0][0] != '' and boardPositions[0][1] != '' and boardPositions[0][1] != '' and boardPositions[0][2] != '': # Checking for a horizontal win on the first row
 		winner = boardPositions[0][0]
 		return result(winner)
-	elif boardPositions[1][0] == boardPositions[1][1] == boardPositions[1][2]: # Checking for a horizontal win on the second row
+	elif boardPositions[1][0] == boardPositions[1][1] and boardPositions[1][1] == boardPositions[1][2] and boardPositions[1][0] != '' and boardPositions[1][1] != '' and boardPositions[1][2] != '': # Checking for a horizontal win on the second row
 		winner = boardPositions[1][0]
 		return result(winner)
-	elif boardPositions[2][0] == boardPositions[2][1] == boardPositions[2][2]: # Checking for a horizontal win on the third row
+	elif boardPositions[2][0] == boardPositions[2][1] and boardPositions[2][1] == boardPositions[2][2] and boardPositions[2][0] != '' and boardPositions[2][1] != '' and boardPositions[2][2] != '': # Checking for a horizontal win on the third row
 		winner = boardPositions[2][0]
 		return result(winner)
-	elif boardPositions[0][0] == boardPositions[1][0] == boardPositions[2][0]: # Checking for a vertical win on the first column
+	elif boardPositions[0][0] == boardPositions[1][0] and boardPositions[1][0] == boardPositions[2][0] and boardPositions[0][0] != '' and boardPositions[1][0] != '' and boardPositions[2][0] != '': # Clecking for a vertical win on the first column
 		winner = boardPositions[0][0]
 		return result(winner)
-	elif boardPositions[0][1] == boardPositions[1][1] == boardPositions[2][2]: # Checking for a vertical win on the second column
+	elif boardPositions[0][1] == boardPositions[1][1] and boardPositions[1][1] == boardPositions[2][2] and boardPositions[0][1] != '' and boardPositions[1][1] != '' and boardPositions[2][1] != '': # Checking for a vertical win on the second column
 		winner = boardPositions[0][0]
 		return result(winner)
-	elif boardPositions[0][2] == boardPositions[1][2] == boardPositions[2][2]:  # Checking for a vertical win on the third column
+	elif boardPositions[0][2] == boardPositions[1][2] and boardPositions[1][2] == boardPositions[2][2] and boardPositions[0][2] != '' and boardPositions[1][2] != '' and boardPositions[2][2] != '':  # Checking for a vertical win on the third column
 		winner = boardPositions[0][0]
 		return result(winner)
-	elif boardPositions[0][0] == boardPositions[1][1] == boardPositions[2][2]:  # Checking for a diagonal win from the top left corner to the bottom left corner
+	elif boardPositions[0][0] == boardPositions[1][1] and boardPositions[1][1] == boardPositions[2][2] and boardPositions[0][0] != '':  # Checking for a diagonal win from the top left corner to the bottom left corner
 		winner = boardPositions[0][0]
 		return result(winner)
-	elif boardPositions[0][2] == boardPositions[1][1] == boardPositions[2][0]: # Checking for a diagonal win from the top left corner to the bottom right corner
+	elif boardPositions[0][2] == boardPositions[1][1] and boardPositions[1][1] == boardPositions[2][0] and boardPositions[0][2] != '': # Checking for a diagonal win from the top left corner to the bottom right corner
 		winner = boardPositions[0][0]
 		return result(winner)
-	elif numberOfMoves == 9:
+	elif numberOfMoves == 9 and boardPositions != '':
+		print("It is a tie")
 		return "IT'S A TIE"
 
+def winDrawer(winPen, winBoard):
+	winPen.penup()
+	winPen.color('green')
+	if winBoard[0][0] == winBoard[0][1] == winBoard[0][2]:
+		winPen.goto(-90,50)
+		winPen.pendown()
+		winPen.goto(10,50)
+	elif winBoard[1][0] == winBoard[1][1] == winBoard[1][2]:
+		winPen.goto(-90,0)
+		winPen.pendown()
+		winPen.goto(10,0)
+	elif winBoard[2][0] == winBoard[2][1] == winBoard[2][2]:
+		winPen.goto(-90,-50)
+		winPen.pendown()
+		winPen.goto(10,-50)
+	elif winBoard[0][0] == winBoard[1][0] == winBoard[2][0]:
+		winPen.goto(-90,50)
+		winPen.pendown()
+		winPen.goto(-90,-50)
+	elif winBoard[0][1] == winBoard[1][1] == winBoard[2][1]:
+		winPen.goto(-40,50)
+		winPen.pendown()
+		winPen.goto(-40,-50)
+	elif winBoard[0][2] == winBoard[1][2] == winBoard[2][2]:
+		winPen.goto(10,50)
+		winPen.pendown()
+		winPen.goto(10,-50)
+	elif winBoard[0][0] == winBoard[1][1] == winBoard[2][2]:
+		winPen.goto(-90,50)
+		winPen.pendown()
+		winPen.goto(10,-50)
+	elif winBoard[0][2] == winBoard[1][1] == winBoard[2][0]:
+		winPen.goto(10,50)
+		winPen.pendown()
+		winPen.goto(-90,-50)
 
 myPen = turtle.Turtle() # Setting up the pen
+myPen.hideturtle()
 myPen.speed(0) # Setting the speed to 0 so I can test my code quickly
 myPen.penup()
 myPen.goto(50,-50) # Going to the bottom right corner of the square
@@ -211,8 +249,8 @@ myPen.forward(150) # Drawing the second horizontal line
 myPen.penup()
 myPen.color('black')
 myPen.goto(-100, -75)
-labelingsytle = ("Arial", 10, "bold")
-myPen.write("Player 1: X Player 2: O", font = labelingsytle)
+labelingStyle = ("Arial", 10, "bold")
+myPen.write("Player 1: X Player 2: O", font = labelingStyle)
 board = [
 	['', '', ''],
 	['', '', ''],
@@ -222,7 +260,10 @@ counter = 0
 while not counter == 9:
 	if counter % 2 == 0 and counter != 9: # Checking if it is player 1's turn or player 2's turn
 		win = winChecker(board, counter)
-		if win != "PLAYER 1 WINS!!!" or "PLAYER 2 WINS!!!" or "IT'S A TIE":
+		if win == "PLAYER 1 WINS!!!" or win == "PLAYER 2 WINS!!!" or win == "IT'S A TIE":
+			winDrawer(myPen, board)
+			break
+		elif win != "PLAYER 1 WINS!!!" or win != "PLAYER 2 WINS!!!" or win != "IT'S A TIE":
 			inputPosition = int(input("Player-1 (1-9): "))
 			inputSymbol = "x"
 			if inputPosition > 0 and inputPosition < 10: # Checking if the position is valid
@@ -230,11 +271,13 @@ while not counter == 9:
 				if result == True:
 					symbolDrawer(myPen, inputSymbol, inputPosition) # Calling the function
 					counter += 1
-		else:
-			break
+
 	if counter % 2 == 1 and counter != 9: # Checking if it is player 1's turn or player 2's turn
-		win = winChecker(board, counter)
-		if win != "PLAYER 1 WINS!!!" or "PLAYER 2 WINS!!!" or "IT'S A TIE":
+		win2 = winChecker(board, counter)
+		if win2 == "PLAYER 1 WINS!!!" or win2 == "PLAYER 2 WINS!!!" or win2 == "IT'S A TIE":
+			winDrawer(myPen, board)
+			break
+		elif win2 != "PLAYER 1 WINS!!!" or win2 != "PLAYER 2 WINS!!!" or win2 != "IT'S A TIE":
 			inputPosition = int(input("Player-2 (1-9): "))
 			inputSymbol = "o"
 			if inputPosition > 0 and inputPosition < 10: # Checking if the position is valid
@@ -242,5 +285,3 @@ while not counter == 9:
 				if result == True:
 					symbolDrawer(myPen, inputSymbol, inputPosition) # Calling the function
 					counter += 1
-		else:
-			break
